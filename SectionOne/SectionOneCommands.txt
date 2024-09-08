@@ -1,0 +1,14 @@
+#!/bin/env bash
+sudo apt install mailutils -y
+mail --version
+sudo service postfix status
+sudo su
+cd /etc/postfix
+cp main.cf main.cf.bkp
+nano main.cf
+cd /etc/postfix/sasl
+nano sasl_passwd
+chmod 600 sasl_passwd
+service postfix start
+exit
+echo "This is the body of the email" | mail -s "This is the subject" joeloswin41@gmail.com
